@@ -1,0 +1,16 @@
+package com.dms.document_management.model;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+@Entity
+@Table
+public class User extends AbstractEntity{
+    // attributes
+    private String fName;
+    private String lName;
+    private String email;
+    private String username;
+    private String password;
+    private Set<Role> roles;
+
+}
