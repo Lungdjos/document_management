@@ -9,7 +9,7 @@ public class DocumentManagementApplication {
 	// main method
 	public static void main(String[] args) {
 		SpringApplication.run(DocumentManagementApplication.class, args);
-		System.out.println("DocumentManagementApplication is running");
+		system.ou
 	}
 
 }
