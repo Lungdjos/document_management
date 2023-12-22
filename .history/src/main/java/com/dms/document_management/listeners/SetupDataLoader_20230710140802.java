@@ -52,6 +52,7 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
         userDao.save(user);
 
         alreadySetup = true;
+
     }
 
     @Transactional

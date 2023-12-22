@@ -24,9 +24,7 @@ public class UserManagerImpl implements UserManager, UserDetailsService {
     private MessageSource messageSource;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        // getting the user from the database
         var user =  userDao.findByUsername(username);
-        // check if the user is already in the database
         if (user == null) {
             return new org.springframework.security.core.userdetails.User(
               " ", " ", true, true, true, true, 
@@ -38,7 +36,7 @@ public class UserManagerImpl implements UserManager, UserDetailsService {
           true, getAuthorities(user.getRoles()));
     }
     
-    private Collection<? extends GrantedAuthority> getAuthorities(Collection<Role> roles) {
+    private Collection<? extends GrantedAuthority> getAuthorities(List<Role> roles) {
         return getGrantedAuthorities(getPrivileges(roles));
     }
 

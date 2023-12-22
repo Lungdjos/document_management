@@ -26,7 +26,7 @@ public class UserManagerImpl implements UserManager, UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         // getting the user from the database
         var user =  userDao.findByUsername(username);
-        // check if the user is already in the database
+        // ch
         if (user == null) {
             return new org.springframework.security.core.userdetails.User(
               " ", " ", true, true, true, true, 
