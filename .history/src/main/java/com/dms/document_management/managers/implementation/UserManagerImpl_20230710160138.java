@@ -15,7 +15,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import com.dms.document_management.dao.RolesDao;
 import com.dms.document_management.dao.UserDao;
 import com.dms.document_management.managers.UserManager;
-import com.dms.document_management.model.Privilege;
 import com.dms.document_management.model.Role;
 
 public class UserManagerImpl implements UserManager, UserDetailsService {

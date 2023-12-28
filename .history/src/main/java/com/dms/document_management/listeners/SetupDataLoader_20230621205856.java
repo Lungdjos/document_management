@@ -7,10 +7,8 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.dms.document_management.dao.PrivilegesDao;
 import com.dms.document_management.dao.RolesDao;
 import com.dms.document_management.dao.UserDao;
-import com.dms.document_management.model.Privilege;
 import com.dms.document_management.model.User;
 
 import jakarta.transaction.Transactional;

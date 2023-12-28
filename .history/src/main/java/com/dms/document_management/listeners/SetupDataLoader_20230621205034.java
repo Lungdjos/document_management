@@ -3,7 +3,6 @@ package com.dms.document_management.listeners;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 
-import com.dms.document_management.dao.PrivilegesDao;
 import com.dms.document_management.dao.RolesDao;
 
 public class SetupDataLoader implements ApplicationListener<ContextRefreshedEvent> {
