@@ -12,7 +12,7 @@ public class Role extends AbstractEntity {
     // attributes
     private String name;
     @ManyToMany(mappedBy = "roles")
-    private Collection<User> users;
+    private Collection<UserInfo> users;
 
     @ManyToMany
     @JoinTable(
@@ -38,17 +38,17 @@ public class Role extends AbstractEntity {
     }
 
     /**
-     * @return Collection<User> return the users
+     * @return Collection<UserInfo> return the users
      */
-    public Collection<User> getUsers() {
+    public Collection<UserInfo> getUsers() {
         return users;
     }
 
     /**
-     * @param users the users to set
+     * @param userInfos the userInfos to set
      */
-    public void setUsers(Collection<User> users) {
-        this.users = users;
+    public void setUsers(Collection<UserInfo> userInfos) {
+        this.users = userInfos;
     }
 
     /**

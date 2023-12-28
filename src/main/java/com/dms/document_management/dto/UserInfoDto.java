@@ -1,16 +1,7 @@
-package com.dms.document_management.model;
-import java.util.Collection;
+package com.dms.document_management.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Table;
 
-@Entity
-@Table
-public class User extends AbstractEntity{
-    // attributes
+public class UserInfoDto {
     private String fName;
     private String lName;
     private String email;
@@ -18,14 +9,7 @@ public class User extends AbstractEntity{
     private String password;
     private boolean enabled;
     private boolean tokenExpired;
-    @ManyToMany
-    @JoinTable(name = "users_roles", 
-        joinColumns = @JoinColumn(
-        name = "user_id", referencedColumnName = "id"),
-        inverseJoinColumns = @JoinColumn(
-        name = "role_id", referencedColumnName = "id"))
-    private Collection<Role> roles;
-
+    private String roles;
 
     /**
      * @return String return the fName
@@ -126,16 +110,16 @@ public class User extends AbstractEntity{
     }
 
     /**
-     * @return Collection<Role> return the roles
+     * @return String return the roles
      */
-    public Collection<Role> getRoles() {
+    public String getRoles() {
         return roles;
     }
 
     /**
      * @param roles the roles to set
      */
-    public void setRoles(Collection<Role> roles) {
+    public void setRoles(String roles) {
         this.roles = roles;
     }
 

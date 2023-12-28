@@ -3,11 +3,11 @@ package com.dms.document_management.dao;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.dms.document_management.model.User;
+import com.dms.document_management.model.UserInfo;
 
 @Repository
-public interface UserDao extends JpaRepository<User, Long>{
+public interface UserInfoDao extends JpaRepository<UserInfo, Long>{
 
-    User findByUsername(String username);
+    UserInfo findByUsername(String username);
     
 }
