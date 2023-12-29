@@ -52,7 +52,7 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable // Disable CSRF protection
                 )
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/api/dms/login").permitAll() // Permit access to /api/dms/login
+                        .requestMatchers("/api/dms/login", "/api/dms/register").permitAll() // Permit access to /api/dms/login
                         .requestMatchers("/api/dms/**").authenticated() // Require authentication for other /api/dms/**
                 )
                 .sessionManagement(sessionManagement -> sessionManagement
