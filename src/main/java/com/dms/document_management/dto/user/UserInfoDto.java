@@ -1,4 +1,4 @@
-package com.dms.document_management.dto;
+package com.dms.document_management.dto.user;
 
 
 public class UserInfoDto {

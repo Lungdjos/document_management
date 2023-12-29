@@ -1,7 +1,6 @@
-package com.dms.document_management.model;
+package com.dms.document_management.models.roles;
 
-import java.util.Collection;
-
+import com.dms.document_management.models.AbstractEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

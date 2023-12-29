@@ -1,8 +1,8 @@
-package com.dms.document_management.managers.implementation;
+package com.dms.document_management.managers.implementation.user;
 
 import com.dms.document_management.managers.CustomUserDetails;
-import com.dms.document_management.model.Role;
-import com.dms.document_management.model.UserInfo;
+import com.dms.document_management.models.roles.Role;
+import com.dms.document_management.models.user.UserInfo;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 

@@ -8,7 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.dms.document_management.dao.RolesDao;
 import com.dms.document_management.dao.UserDao;
-import com.dms.document_management.model.User;
+import com.dms.document_management.models.User;
 
 import jakarta.transaction.Transactional;
 

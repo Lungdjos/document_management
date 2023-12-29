@@ -1,4 +1,4 @@
-package com.dms.document_management.model;
+package com.dms.document_management.models;
 
 import jakarta.persistence.Id;
 

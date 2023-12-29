@@ -1,8 +1,7 @@
-package com.dms.document_management.model;
+package com.dms.document_management.models;
 import java.util.Collection;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
