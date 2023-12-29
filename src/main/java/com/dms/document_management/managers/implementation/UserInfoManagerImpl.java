@@ -16,7 +16,7 @@ import java.util.Objects;
 
 @Log4j2
 @AllArgsConstructor
-public class UserInfoManagerImpl implements UserInfoManager, UserDetailsService {
+public class UserInfoManagerImpl implements UserInfoManager {
     private final UserInfoDao userInfoDao;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
