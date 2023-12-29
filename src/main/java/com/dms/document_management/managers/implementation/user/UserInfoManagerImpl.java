@@ -7,10 +7,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import com.dms.document_management.managers.UserInfoManager;
+import org.springframework.stereotype.Service;
 
 import java.util.Objects;
 
 @Log4j2
+@Service
 public class UserInfoManagerImpl implements UserInfoManager {
     @Autowired
     private UserInfoDao userInfoDao;

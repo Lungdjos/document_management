@@ -1,5 +1,6 @@
 package com.dms.document_management.configs;
 
+import com.dms.document_management.managers.implementation.configs.JwtAuthentFilter;
 import com.dms.document_management.managers.implementation.user.UserInfoManagerImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

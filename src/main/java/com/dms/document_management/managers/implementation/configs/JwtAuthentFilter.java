@@ -1,7 +1,6 @@
-package com.dms.document_management.configs;
+package com.dms.document_management.managers.implementation.configs;
 
 import com.dms.document_management.managers.UserInfoManager;
-import com.dms.document_management.managers.implementation.configs.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
