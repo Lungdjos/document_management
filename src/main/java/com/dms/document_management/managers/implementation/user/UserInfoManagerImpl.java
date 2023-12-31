@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Primary;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
@@ -23,11 +24,16 @@ import java.util.Set;
 
 @Log4j2
 @Service
-
+@Primary
 public class UserInfoManagerImpl implements UserInfoManager {
+    @Autowired
     private UserInfoDao userInfoDao;
+
+    @Autowired
     private RolesDao rolesDao;
-    private PasswordEncoder passwordEncoder;
+    @Bean
+    public PasswordEncoder passwordEncoder(){return new BCryptPasswordEncoder();
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -55,7 +61,7 @@ public class UserInfoManagerImpl implements UserInfoManager {
             newUser.setMName(userInfoDto.getMName());
             newUser.setUsername(userInfoDto.getUsername());
             newUser.setEmail(userInfoDto.getEmail());
-            newUser.setPassword(passwordEncoder.encode(userInfoDto.getPassword()));
+            newUser.setPassword(passwordEncoder().encode(userInfoDto.getPassword()));
 
             Set<Role> roles = rolesDao.findByNameIn(Collections.singleton(String.valueOf(userInfoDto.getRole())));
             newUser.setRoles(roles);
