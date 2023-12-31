@@ -40,7 +40,7 @@ public class UserRestController {
         }
     }
     @PostMapping(value = "/register")
-    public Map<String,Object> registerUser(UserInfoDto userInfoDto){
+    public Map<String,Object> registerUser(@RequestBody UserInfoDto userInfoDto){
         Map<String, Object> map = new HashMap<>();
         try {
             userInfoManager.createUser(userInfoDto);

@@ -27,13 +27,13 @@ public class SecurityConfiguration {
 
     @Autowired
     private JwtAuthentFilter jwtAuthentFilter;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Bean
     public UserDetailsService userDetailsService(){return new UserInfoManagerImpl();
     }
-    @Bean
-    public PasswordEncoder passwordEncoder(){return new BCryptPasswordEncoder();
-    }
+
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
@@ -42,7 +42,7 @@ public class SecurityConfiguration {
     public AuthenticationProvider authenticationProvider(){
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
         authenticationProvider.setUserDetailsService(userDetailsService());
-        authenticationProvider.setPasswordEncoder(passwordEncoder());
+        authenticationProvider.setPasswordEncoder(passwordEncoder);
         return authenticationProvider;
     }
 
