@@ -37,20 +37,20 @@ public class UserInfoManagerImplTest {
     void testCreateUser() throws Exception {
         // Mock data
         UserInfoDto userInfoDto = new UserInfoDto();
-        userInfoDto.setFName("John");
-        userInfoDto.setLName("Doe");
+        userInfoDto.setFName("Jay");
+        userInfoDto.setLName("Lun");
         userInfoDto.setMName("Middle");
-        userInfoDto.setUsername("john.doe");
-        userInfoDto.setEmail("john.doe@example.com");
+        userInfoDto.setUsername("jay.lun");
+        userInfoDto.setEmail("jay.lun@example.com");
         userInfoDto.setPassword("password");
-        userInfoDto.setRole(rolesDao.findByName("ROLE_USER"));  // Assuming a role name
+        userInfoDto.setRole(rolesDao.findByName("ROLE_ADMIN"));  // Assuming a role name
 
         Role mockRole = new Role();
         mockRole.setId(1L);
-        mockRole.setName("ROLE_USER");
+        mockRole.setName("ROLE_ADMIN");
 
         // Mocking behavior
-        when(userInfoDao.findByUsername("john.doe")).thenReturn(null);  // No existing user
+        when(userInfoDao.findByUsername("jay.lun")).thenReturn(null);  // No existing user
         when(passwordEncoder.encode("password")).thenReturn("hashedPassword");
         when(userInfoDao.save(any(UserInfo.class))).thenReturn(new UserInfo());
 
@@ -58,7 +58,7 @@ public class UserInfoManagerImplTest {
         userInfoManager.createUser(userInfoDto);
 
         // Verify interactions
-        verify(userInfoDao, times(1)).findByUsername("john.doe");
+        verify(userInfoDao, times(1)).findByUsername("jay.lun");
         verify(passwordEncoder, times(1)).encode("password");
         verify(userInfoDao, times(1)).save(any(UserInfo.class));
     }
@@ -67,16 +67,16 @@ public class UserInfoManagerImplTest {
     void testCreateUserExistingUser() {
         // Mock data
         UserInfoDto userInfoDto = new UserInfoDto();
-        userInfoDto.setUsername("john.doe");
+        userInfoDto.setUsername("jay.lun");
 
         // Mocking behavior
-        when(userInfoDao.findByUsername("john.doe")).thenReturn(new UserInfo());
+        when(userInfoDao.findByUsername("jay.lun")).thenReturn(new UserInfo());
 
         // Test the createUser method with an existing user
         assertThrows(Exception.class, () -> userInfoManager.createUser(userInfoDto));
 
         // Verify interactions
-        verify(userInfoDao, times(1)).findByUsername("john.doe");
+        verify(userInfoDao, times(1)).findByUsername("jay.lun");
         verifyNoMoreInteractions(passwordEncoder, userInfoDao);
     }
 }
