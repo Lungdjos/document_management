@@ -3,6 +3,7 @@ package com.dms.document_management.controllers.RestController;
 import com.dms.document_management.dto.confis.AuthRequestDto;
 import com.dms.document_management.dto.confis.JwtResponseToken;
 import com.dms.document_management.dto.user.UserInfoDto;
+import com.dms.document_management.enums.Status;
 import com.dms.document_management.managers.UserInfoManager;
 import com.dms.document_management.managers.implementation.configs.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,12 +45,12 @@ public class UserRestController {
         Map<String, Object> map = new HashMap<>();
         try {
             userInfoManager.createUser(userInfoDto);
-            map.put("status", "SUCCESS");
+            map.put("status", Status.SUCCESS);
             map.put("message", "User created successfully");
 
             return map;
         } catch (Exception e) {
-            map.put("status", "ERROR");
+            map.put("status", Status.ERROR);
             map.put("message", "User could not be created successfully!");
             return map;
         }
