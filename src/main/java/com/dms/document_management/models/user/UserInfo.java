@@ -2,7 +2,7 @@ package com.dms.document_management.models.user;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.dms.document_management.models.AbstractEntity;
+import com.dms.document_management.models.abstracts.AbstractEntity;
 import com.dms.document_management.models.roles.Role;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;

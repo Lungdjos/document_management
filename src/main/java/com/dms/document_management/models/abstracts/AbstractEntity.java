@@ -1,4 +1,4 @@
-package com.dms.document_management.models;
+package com.dms.document_management.models.abstracts;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
