@@ -62,8 +62,7 @@ public class UserInfoManagerImpl implements UserInfoManager {
             newUser.setUsername(userInfoDto.getUsername());
             newUser.setEmail(userInfoDto.getEmail());
             newUser.setPassword(passwordEncoder().encode(userInfoDto.getPassword()));
-
-            Set<Role> roles = rolesDao.findByNameIn(Collections.singleton(String.valueOf(userInfoDto.getRole())));
+            Set<Role> roles = rolesDao.findByNameIn(userInfoDto.getRoles());;
             newUser.setRoles(roles);
 
             userInfoDao.save(newUser);

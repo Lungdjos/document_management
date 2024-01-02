@@ -23,7 +23,7 @@ public class Document extends AuditableEntity {
     private String description;
     private String submittedBy;
     private boolean isConfidential;
-    private Status status = Status.CREATE;
+    private Status status;
     private Timestamp submittedOn;
     @NonNull
     private String code;

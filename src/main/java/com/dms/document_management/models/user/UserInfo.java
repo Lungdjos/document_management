@@ -15,7 +15,6 @@ import lombok.*;
 @Getter
 @Setter
 @Entity
-@Table
 public class UserInfo extends AbstractEntity {
     // attributes
     private String fName;

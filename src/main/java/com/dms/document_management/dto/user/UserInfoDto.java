@@ -4,6 +4,8 @@ package com.dms.document_management.dto.user;
 import com.dms.document_management.models.roles.Role;
 import lombok.*;
 
+import java.util.Set;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -16,6 +18,6 @@ public class UserInfoDto {
     private String email;
     private String username;
     private String password;
-    private Role role;
+    private Set<String> roles;
 
 }
