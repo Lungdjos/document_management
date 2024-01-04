@@ -17,10 +17,14 @@ import lombok.*;
 @Entity
 public class UserInfo extends AbstractEntity {
     // attributes
-    private String fName;
-    private String mName;
-    private String lName;
+    @NonNull
+    private String firstName;
+    private String middleName;
+    @NonNull
+    private String lastName;
+    @NonNull
     private String email;
+    @NonNull
     private String username;
     @JsonIgnore
     private String password;
