@@ -11,6 +11,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,11 +28,17 @@ public class UserRestController {
     @Autowired
     private JwtService jwtService;
     @Autowired
+    private PasswordEncoder passwordEncoder;
+    @Autowired
     private UserInfoManager userInfoManager;
+
     @PostMapping(value = "/login")
     public JwtResponseToken aunthenticateAndGetToken(@RequestBody AuthRequestDto authRequestDto){
+        return getJwtResponseToken(authRequestDto);
+    }
+    private JwtResponseToken getJwtResponseToken(AuthRequestDto authRequestDto) {
         Authentication authentication = authenticationManager
-                .authenticate(new UsernamePasswordAuthenticationToken(authRequestDto.getUsername(), authRequestDto.getPassword()));
+                .authenticate(new UsernamePasswordAuthenticationToken(authRequestDto.getUsername(), passwordEncoder.encode(authRequestDto.getPassword())));
 
         if (authentication.isAuthenticated()){
             return JwtResponseToken.builder()
@@ -40,6 +47,7 @@ public class UserRestController {
             throw new UsernameNotFoundException("Invalid user request...!");
         }
     }
+
     @PostMapping(value = "/register")
     public Map<String,Object> registerUser(@RequestBody UserInfoDto userInfoDto){
         Map<String, Object> map = new HashMap<>();
