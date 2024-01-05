@@ -1,6 +1,7 @@
 package com.dms.document_management.mangers;
 
 import com.dms.document_management.dao.RolesDao;
+import com.dms.document_management.managers.RoleManager;
 import com.dms.document_management.managers.UserInfoManager;
 import com.dms.document_management.managers.implementation.user.UserInfoManagerImpl;
 import com.dms.document_management.dao.UserInfoDao;
@@ -23,7 +24,7 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 public class UserInfoManagerImplTest {
     @Mock
-    private RolesDao rolesDao;
+    private RoleManager roleManager;
     @Mock
     private UserInfoDao userInfoDao;
 
@@ -37,13 +38,13 @@ public class UserInfoManagerImplTest {
     void testCreateUser() throws Exception {
         // Mock data
         UserInfoDto userInfoDto = new UserInfoDto();
-        userInfoDto.setFName("Jay");
-        userInfoDto.setLName("Lun");
-        userInfoDto.setMName("Middle");
+        userInfoDto.setFirstName("Jay");
+        userInfoDto.setLastName("Lun");
+        userInfoDto.setMiddleName("Middle");
         userInfoDto.setUsername("jay.lun");
         userInfoDto.setEmail("jay.lun@example.com");
         userInfoDto.setPassword("password");
-        userInfoDto.setRole(rolesDao.findByName("ROLE_ADMIN"));  // Assuming a role name
+        userInfoDto.setRole("ROLE_ADMIN");  // Assuming a role name
 
         Role mockRole = new Role();
         mockRole.setId(1L);
