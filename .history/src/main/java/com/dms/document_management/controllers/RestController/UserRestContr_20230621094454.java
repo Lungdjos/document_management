@@ -1,4 +1,4 @@
-package com.dms.document_management.controllers.RestController;
+package com.dms.document_management.controllers.restcontr;
 @RestController
 public class UserRestContr {
     

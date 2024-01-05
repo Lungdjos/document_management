@@ -1,4 +1,4 @@
-package com.dms.document_management.controllers.RestController;
+package com.dms.document_management.controllers.restcontr;
 
 import com.dms.document_management.dto.confis.AuthRequestDto;
 import com.dms.document_management.dto.confis.JwtResponseToken;
@@ -38,7 +38,7 @@ public class UserRestController {
     }
     private JwtResponseToken getJwtResponseToken(AuthRequestDto authRequestDto) {
         Authentication authentication = authenticationManager
-                .authenticate(new UsernamePasswordAuthenticationToken(authRequestDto.getUsername(), passwordEncoder.encode(authRequestDto.getPassword())));
+                .authenticate(new UsernamePasswordAuthenticationToken(authRequestDto.getUsername(), authRequestDto.getPassword()));
 
         if (authentication.isAuthenticated()){
             return JwtResponseToken.builder()
