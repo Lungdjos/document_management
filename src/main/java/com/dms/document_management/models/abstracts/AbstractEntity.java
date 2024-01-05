@@ -13,7 +13,7 @@ import lombok.Setter;
 public class AbstractEntity {
     // attributes
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
 }
