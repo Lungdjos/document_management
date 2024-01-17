@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -53,13 +54,18 @@ public class SecurityConfiguration {
                 )
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/api/dms/login", "/api/dms/register").permitAll() // Permit access to /api/dms/login
-                        .requestMatchers("/api/dms/**").authenticated() // Require authentication for other /api/dms/**
+                        .requestMatchers("/api/dms/**", "/dms/**").authenticated() // Require authentication for other /api/dms/**
                 )
                 .sessionManagement(sessionManagement -> sessionManagement
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // Set session creation policy to STATELESS
                 )
                 .authenticationProvider(authenticationProvider()) // Assuming you have an authenticationProvider bean
                 .addFilterBefore(jwtAuthentFilter, UsernamePasswordAuthenticationFilter.class)
+                .formLogin(auth_in -> auth_in
+                        .loginPage("/dms/login")
+                        .permitAll()
+                )
+                .logout(LogoutConfigurer::permitAll)
                 .build();
     }
 }
