@@ -62,7 +62,7 @@ public class SecurityConfiguration {
                 .authenticationProvider(authenticationProvider()) // Assuming you have an authenticationProvider bean
                 .addFilterBefore(jwtAuthentFilter, UsernamePasswordAuthenticationFilter.class)
                 .formLogin(auth_in -> auth_in
-                        .loginPage("/dms/login")
+                        .loginPage("/user/login")
                         .permitAll()
                 )
                 .logout(LogoutConfigurer::permitAll)
