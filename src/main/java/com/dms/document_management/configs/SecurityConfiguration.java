@@ -28,11 +28,13 @@ public class SecurityConfiguration {
 
     @Autowired
     private JwtAuthentFilter jwtAuthentFilter;
+
     @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Bean
-    public UserDetailsService userDetailsService(){return new UserInfoManagerImpl();
+    public UserDetailsService userDetailsService() {
+        return new UserInfoManagerImpl();
     }
 
     @Bean
@@ -40,7 +42,7 @@ public class SecurityConfiguration {
         return authenticationConfiguration.getAuthenticationManager();
     }
     @Bean
-    public AuthenticationProvider authenticationProvider(){
+    public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
         authenticationProvider.setUserDetailsService(userDetailsService());
         authenticationProvider.setPasswordEncoder(passwordEncoder);
@@ -49,23 +51,37 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-        return httpSecurity
-                .csrf(AbstractHttpConfigurer::disable // Disable CSRF protection
-                )
+        httpSecurity
+                .csrf(AbstractHttpConfigurer::disable) // disable CSRF protection
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/api/dms/login", "/api/dms/register").permitAll() // Permit access to /api/dms/login
-                        .requestMatchers("/api/dms/**", "/dms/**").authenticated() // Require authentication for other /api/dms/**
+                        .requestMatchers(
+                                "/api/dms/login", "/api/dms/register", "/dms/login", "/dms/createUser"
+                        ).permitAll() // permit access to login and registration
+                        .requestMatchers("/api/dms/**", "/dms/**").authenticated() // require authentication for other URLs
                 )
                 .sessionManagement(sessionManagement -> sessionManagement
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // Set session creation policy to STATELESS
                 )
                 .authenticationProvider(authenticationProvider()) // Assuming you have an authenticationProvider bean
                 .addFilterBefore(jwtAuthentFilter, UsernamePasswordAuthenticationFilter.class)
-                .formLogin(auth_in -> auth_in
+                .formLogin(login -> login
                         .loginPage("/user/login")
                         .permitAll()
+                        .loginProcessingUrl("/user/login")
+                        .defaultSuccessUrl("/dms/") // Specify the default success URL after login
+                        .failureUrl("/user/login?error=true") // Specify the URL to redirect to if login fails
                 )
-                .logout(LogoutConfigurer::permitAll)
-                .build();
+                .logout(logout -> logout
+                        .logoutUrl("/user/logout")
+                        .logoutSuccessUrl("/") // Specify the default success URL after logout
+                        .invalidateHttpSession(true)
+                        .deleteCookies("JSESSIONID", "*") // Specify the cookies to delete on logout
+                )
+                .exceptionHandling(exceptionHandling -> exceptionHandling
+                        .accessDeniedPage("/access-denied") // Specify the custom access denied page
+                );
+
+        return httpSecurity.build();
     }
 }
+
