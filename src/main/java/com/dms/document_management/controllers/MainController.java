@@ -22,15 +22,15 @@ public class MainController {
      *
      * @return
      */
-    @PostMapping(value = "/login")
-    public ModelAndView login(){return new ModelAndView("/user/login");}
+    @PostMapping(value = "/")
+    public ModelAndView home(){return new ModelAndView("index");}
 
     /**
      *
      * @param authRequestDto
      * @return
      */
-    @PostMapping(value = "/loginUser")
+    @PostMapping(value = "/login")
     public ModelAndView login(AuthRequestDto authRequestDto){
         ModelAndView modelAndView = new ModelAndView("index");
         if (Objects.nonNull(authRequestDto)){
