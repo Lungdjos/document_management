@@ -58,13 +58,7 @@ public class SecurityConfiguration {
                                 "/api/dms/login", "/api/dms/register", "/dms/login", "/dms/createUser"
                         ).permitAll() // permit access to login and registration
                         .requestMatchers("/api/dms/**", "/dms/**").authenticated() // require authentication for other URLs
-                )
-                .sessionManagement(sessionManagement -> sessionManagement
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // Set session creation policy to STATELESS
-                )
-                .authenticationProvider(authenticationProvider()) // Assuming you have an authenticationProvider bean
-                .addFilterBefore(jwtAuthentFilter, UsernamePasswordAuthenticationFilter.class)
-                .formLogin(login -> login
+                ).formLogin(login -> login
                         .loginPage("/user/login")
                         .permitAll()
                         .loginProcessingUrl("/user/login")
@@ -79,7 +73,13 @@ public class SecurityConfiguration {
                 )
                 .exceptionHandling(exceptionHandling -> exceptionHandling
                         .accessDeniedPage("/access-denied") // Specify the custom access denied page
-                );
+                )
+                .sessionManagement(sessionManagement -> sessionManagement
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // Set session creation policy to STATELESS
+                )
+                .authenticationProvider(authenticationProvider()) // Assuming you have an authenticationProvider bean
+                .addFilterBefore(jwtAuthentFilter, UsernamePasswordAuthenticationFilter.class)
+                ;
 
         return httpSecurity.build();
     }
