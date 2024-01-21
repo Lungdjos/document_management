@@ -22,7 +22,7 @@ public class MainController {
      *
      * @return
      */
-    @PostMapping(value = "/")
+    @PostMapping(value = "/home")
     public ModelAndView home(){return new ModelAndView("index");}
 
     /**

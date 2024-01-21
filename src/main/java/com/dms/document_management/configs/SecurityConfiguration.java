@@ -62,7 +62,7 @@ public class SecurityConfiguration {
                         .loginPage("/user/login")
                         .permitAll()
                         .loginProcessingUrl("/user/login")
-                        .defaultSuccessUrl("/dms/") // Specify the default success URL after login
+                        .defaultSuccessUrl("/dms/home") // Specify the default success URL after login
                         .failureUrl("/user/login?error=true") // Specify the URL to redirect to if login fails
                 )
                 .logout(logout -> logout
